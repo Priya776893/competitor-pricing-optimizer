@@ -36,7 +36,8 @@ data/raw/*.json
 # Processed data - allow for deployment (small file)
 # data/processed/*.csv
 
-# Models - allow for deployment (small files)
+# Models - ALLOWED for deployment (small files, needed for app to work)
+# Commented out so models can be committed
 # models/*.pkl
 # models/*.joblib
 # models/*.json

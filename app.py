@@ -155,15 +155,65 @@ def main():
     df = load_data()
     optimizer = load_models()
     
+    # If data doesn't exist, try to generate it
     if df is None:
-        st.warning("⚠️ No data found! Please run the scraper and preprocessing first.")
-        st.info("Run: `python src/scraper.py --use-sample` then `python train.py`")
-        return
+        with st.spinner("Generating sample data... This may take a moment on first run."):
+            try:
+                # Generate sample data
+                from src.scraper import generate_sample_data
+                import subprocess
+                import sys
+                
+                # Create directories if needed
+                os.makedirs('data/raw', exist_ok=True)
+                os.makedirs('data/processed', exist_ok=True)
+                os.makedirs('models', exist_ok=True)
+                
+                # Generate and save raw data
+                raw_df = generate_sample_data(n_samples=500)
+                raw_path = 'data/raw/products.csv'
+                raw_df.to_csv(raw_path, index=False)
+                
+                # Process data
+                from src.preprocessing import DataPreprocessor
+                preprocessor = DataPreprocessor()
+                processed_path = 'data/processed/products_processed.csv'
+                df = preprocessor.process(raw_path, processed_path)
+                
+                # Train models if they don't exist
+                if optimizer is None or optimizer.prediction_model is None:
+                    st.info("Training models... This may take 30-60 seconds.")
+                    from src.models import PricingOptimizer
+                    X, y = preprocessor.prepare_features(df, is_training=True)
+                    optimizer = PricingOptimizer()
+                    optimizer.train_clustering(X, n_clusters=5)
+                    optimizer.train_prediction(X, y, tune_hyperparameters=False)
+                    optimizer.save_models()
+                    
+                st.success("✓ Data and models ready!")
+                st.rerun()
+            except Exception as e:
+                st.error(f"Error generating data: {e}")
+                st.info("Please ensure all dependencies are installed.")
+                return
     
     if optimizer is None or optimizer.prediction_model is None:
-        st.warning("⚠️ Models not loaded! Please train models first.")
-        st.info("Run: `python train.py`")
-        return
+        with st.spinner("Training models... This may take 30-60 seconds."):
+            try:
+                from src.models import PricingOptimizer
+                from src.preprocessing import DataPreprocessor
+                
+                preprocessor = DataPreprocessor()
+                X, y = preprocessor.prepare_features(df, is_training=True)
+                optimizer = PricingOptimizer()
+                optimizer.train_clustering(X, n_clusters=5)
+                optimizer.train_prediction(X, y, tune_hyperparameters=False)
+                optimizer.save_models()
+                st.success("✓ Models trained!")
+                st.rerun()
+            except Exception as e:
+                st.error(f"Error training models: {e}")
+                return
     
     # Tab 1: Dashboard
     with tab1:
