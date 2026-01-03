@@ -56,6 +56,8 @@ competitor-pricing-optimizer/
    - Analyze competitive positioning
 
 ## 🎥 Demo Link -> https://competitor-pricing-optimizer-priya-prasad.streamlit.app/
+<img width="1919" height="1029" alt="Screenshot 2026-01-03 222703" src="https://github.com/user-attachments/assets/4374929d-e23d-45f9-8618-a6ad5d2ee77a" />
+
 
 ## 📊 Model Performance
 
