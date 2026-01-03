@@ -1,0 +1,34 @@
+@echo off
+REM Script to prepare project for deployment (Windows)
+REM Run this before pushing to GitHub
+
+echo 🚀 Preparing Competitor Pricing Optimizer for Deployment...
+echo.
+
+REM Check if models exist
+if not exist "models\prediction_model.pkl" (
+    echo ⚠️  Models not found. Training models...
+    python train.py
+)
+
+REM Check if data exists
+if not exist "data\processed\products_processed.csv" (
+    echo ⚠️  Processed data not found. Generating...
+    python src/scraper.py --use-sample
+    python train.py
+)
+
+echo.
+echo ✅ Preparation complete!
+echo.
+echo Next steps:
+echo 1. Review .gitignore - decide if you want to commit models
+echo 2. If committing models, run: git add models/*.pkl models/*.json
+echo 3. git add .
+echo 4. git commit -m "Ready for deployment"
+echo 5. git push
+echo.
+echo Then deploy on Streamlit Cloud: https://share.streamlit.io
+
+pause
+
