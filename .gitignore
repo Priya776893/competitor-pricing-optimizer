@@ -27,18 +27,19 @@ wheels/
 .ipynb_checkpoints
 *.ipynb_checkpoints
 
-# Data files
+# Data files (raw data - don't commit)
 data/raw/*.csv
 data/raw/*.json
-data/processed/*.csv
 *.db
 *.sqlite
 
-# Models (uncomment for deployment - include models in repo)
+# Processed data - allow for deployment (small file)
+# data/processed/*.csv
+
+# Models - allow for deployment (small files)
 # models/*.pkl
 # models/*.joblib
-# For deployment, you may want to commit models (they're small)
-# Just remove the .pkl and .joblib entries above
+# models/*.json
 
 # IDE
 .vscode/
