@@ -24,25 +24,6 @@ An AI-powered pricing optimization tool that scrapes e-commerce product data, us
 - Python 3.8+
 - Chrome/Chromium browser (for Selenium)
 
-### Setup
-
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/competitor-pricing-optimizer.git
-cd competitor-pricing-optimizer
-```
-
-2. Create virtual environment:
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-
-3. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
-
 ## 📁 Project Structure
 
 ```
@@ -63,66 +44,6 @@ competitor-pricing-optimizer/
 └── requirements.txt
 ```
 
-## 🌐 Deploy for Free
-
-**Quick Deploy (5 minutes):**
-1. Push to GitHub
-2. Go to [share.streamlit.io](https://share.streamlit.io)
-3. Connect your repo
-4. Deploy!
-
-See [README_DEPLOYMENT.md](README_DEPLOYMENT.md) for detailed instructions.
-
----
-
-## 🚦 Quick Start
-
-### Option 1: Using Sample Data (Recommended for First Run)
-
-1. **Generate Sample Data**:
-```bash
-python src/scraper.py --use-sample --output data/raw/products.csv
-```
-
-2. **Preprocess Data**:
-```bash
-python src/preprocessing.py
-```
-
-3. **Train Models**:
-```bash
-python train.py
-```
-
-4. **Launch Dashboard**:
-```bash
-streamlit run app.py
-```
-
-### Option 2: Real Web Scraping
-
-1. **Scrape Product Data**:
-```bash
-python src/scraper.py --category smartphones --pages 10
-```
-
-2. **Preprocess Data**:
-```bash
-python src/preprocessing.py
-```
-
-3. **Train Models**:
-```bash
-python train.py
-```
-
-4. **Launch Dashboard**:
-```bash
-streamlit run app.py
-```
-
-> **Note**: For detailed step-by-step instructions, see [QUICKSTART.md](QUICKSTART.md)
-
 ## 📈 Usage
 
 1. **Data Collection**: Run the scraper to collect product data
@@ -134,9 +55,7 @@ streamlit run app.py
    - Get optimal price predictions
    - Analyze competitive positioning
 
-## 🎥 Demo
-
-[Add GIF or YouTube video link here]
+## 🎥 Demo Link -> https://competitor-pricing-optimizer-priya-prasad.streamlit.app/
 
 ## 📊 Model Performance
 
@@ -161,7 +80,7 @@ This project is licensed under the MIT License.
 
 ## 👤 Author
 
-Your Name - [LinkedIn](https://linkedin.com/in/yourprofile)
+Priya Prasad - [LinkedIn](https://www.linkedin.com/in/priya-prasad1312/)
 
 ## 🙏 Acknowledgments
 
